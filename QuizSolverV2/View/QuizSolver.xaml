@@ -7,6 +7,88 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <ListView Grid.Column="0" >
+            <ListViewItem />
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListView.View>
+
+                <GridView>
+                    <GridViewColumn Header="Pytania: " Width="1*">
+                        <GridViewColumn.CellTemplate >
+                            <DataTemplate>
+
+                                <StackPanel Margin="10" Width="200">
+                                    <TextBlock Text="kakauo"/>
+                                    <ComboBox Margin="10" Width="200">
+                                        <ComboBoxItem>ComboBox Item #1</ComboBoxItem>
+                                        <ComboBoxItem>ComboBox Item #2</ComboBoxItem>
+                                        <ComboBoxItem>ComboBox Item #3</ComboBoxItem>
+                                        <DataTemplate>
+                                            <TextBlock Text="kluski"/>
+                                        </DataTemplate>
+                                    </ComboBox>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Grid Grid.Column="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Czas:" Margin="10"/>
+                    <TextBlock Text="1:25" Margin="10"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Punkty:" Margin="10"/>
+                    <TextBlock Text="15" Margin="10"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <StackPanel Orientation="Horizontal" >
+                    <Button Content="Zakończ" Margin="10"/>
+                </StackPanel>
+            </Grid>
+
+
+        </Grid>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </Grid>
 </UserControl>

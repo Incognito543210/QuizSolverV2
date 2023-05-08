@@ -12,7 +12,7 @@
 
     <Grid>
 
-        <view:QuizChoice/>
+        <view:QuizSolver/>
 
     </Grid>
 </Window>

@@ -15,22 +15,28 @@
         </Grid.RowDefinitions>
 
 
-        <Grid Grid.Row="0" Margin="10">
+        <Grid Grid.Row="0" Margin="10" HorizontalAlignment="Center">
             <TextBlock Text="Choice Quiz form below list"/>
         </Grid>
 
-        <ComboBox Grid.Row="1" Margin="350,0,320,-20" Grid.RowSpan="2">
+        <ComboBox Grid.Row="1" Margin="10" Width="200">
             <ComboBoxItem>ComboBox Item #1</ComboBoxItem>
-            <ComboBoxItem IsSelected="True">ComboBox Item #2</ComboBoxItem>
+            <ComboBoxItem>ComboBox Item #2</ComboBoxItem>
             <ComboBoxItem>ComboBox Item #3</ComboBoxItem>
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="kakauo"/>
+                    <TextBlock Text=""/>
                 </DataTemplate>                                            
             </ComboBox.ItemTemplate>
         </ComboBox>
 
+        <Grid Grid.Row="2">
 
+            <Button Content="Wybierz i rozpocznij" Width="150"/>
+
+
+
+        </Grid>
 
 
 
