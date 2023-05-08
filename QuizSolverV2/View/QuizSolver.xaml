@@ -26,11 +26,11 @@
             <ListView.View>
 
                 <GridView>
-                    <GridViewColumn Header="Pytania: " Width="1*">
+                    <GridViewColumn Header="Pytania: " Width="440">
                         <GridViewColumn.CellTemplate >
                             <DataTemplate>
 
-                                <StackPanel Margin="10" Width="200">
+                                <StackPanel Margin="10" Width="230">
                                     <TextBlock Text="kakauo"/>
                                     <ComboBox Margin="10" Width="200">
                                         <ComboBoxItem>ComboBox Item #1</ComboBoxItem>
