@@ -13,7 +13,7 @@ namespace QuizSolverV2.Model
     {
         public int id_quiz { get; set; }
         public string name { get; set; }
-        public ObservableCollection<Questions>? questions { get; set; } = new ObservableCollection<Questions>();
+        public List<Questions>? questions { get; set; } = new List<Questions>();
 
     
 

@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SQLite;
 using System.Collections.ObjectModel;
+using System.Windows.Documents;
 
 namespace QuizSolverV2.Model
 {
     internal class MainModel
     {
         string connectionString = "Data Source=\"C:\\Users\\Pumpel\\Desktop\\QuizDataBase.db\"";
-        public ObservableCollection<Quiz> quizList = new ObservableCollection<Quiz>(); 
-
-       public void loadQuizList()
-        {
+        public List<Quiz> quizList = new List<Quiz>();
+        
+        public List<Quiz> loadQuizList()
+        {  
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
@@ -39,11 +40,12 @@ namespace QuizSolverV2.Model
                 }
                 connection.Close();
             }
+            return quizList;
         }
 
-        public void loadQuestionAndAnswer(int id_quizParametr = 1)
+        public List<Quiz> loadQuestionAndAnswer(int id_quizParametr = 1)
         {
-
+              
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
@@ -106,7 +108,7 @@ namespace QuizSolverV2.Model
 
                 connection.Close();
             }
-
+            return quizList;
         }
 
 

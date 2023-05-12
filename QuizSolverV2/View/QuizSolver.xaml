@@ -15,31 +15,15 @@
         </Grid.ColumnDefinitions>
 
 
-        <ListView Grid.Column="0" >
-            <ListViewItem />
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
+        <ListView Grid.Column="0" ItemsSource="{Binding Questions}">
             <ListView.View>
-
                 <GridView>
-                    <GridViewColumn Header="Pytania: " Width="440">
-                        <GridViewColumn.CellTemplate >
+                    <GridViewColumn Header="Pytania: " Width="440" >
+                        <GridViewColumn.CellTemplate  >
                             <DataTemplate>
-
                                 <StackPanel Margin="10" Width="230">
-                                    <TextBlock Text="kakauo"/>
-                                    <ComboBox Margin="10" Width="200">
-                                        <ComboBoxItem>ComboBox Item #1</ComboBoxItem>
-                                        <ComboBoxItem>ComboBox Item #2</ComboBoxItem>
-                                        <ComboBoxItem>ComboBox Item #3</ComboBoxItem>
-                                        <DataTemplate>
-                                            <TextBlock Text="kluski"/>
-                                        </DataTemplate>
-                                    </ComboBox>
+                                    <TextBlock Text="{Binding question}"/>
+                                    <ComboBox Margin="10" Width="200" ItemsSource="{Binding answers}" DisplayMemberPath= "content" SelectedItem="{Binding UserAnswers[index], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -51,6 +35,7 @@
         <Grid Grid.Column="1">
 
             <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -71,10 +56,22 @@
 
             <Grid Grid.Row="2">
                 <StackPanel Orientation="Horizontal" >
-                    <Button Content="Zakończ" Margin="10"/>
+                    <Button Content="Zakończ" Margin="10" Command="{Binding CheckAnswersCommand}"/>
                 </StackPanel>
             </Grid>
-
+            <Grid Grid.Row="3">
+                <StackPanel Orientation="Vertical" >
+                    <TextBlock Text="Wybierz Quiz z listy poniżej"/>
+                    <ComboBox Margin="10" Width="200" ItemsSource="{Binding QuizList}" SelectedItem="{Binding SelectedQuiz, Mode=TwoWay}" IsEnabled="{Binding IsComboBoxEnabled}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding name}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button Content="Wybierz i rozpocznij" Width="150" Command="{Binding ShowSelectedQuizCommand}"  IsEnabled="{Binding IsButtonEnabled}"/>
+                </StackPanel>
+            </Grid>
 
         </Grid>
         

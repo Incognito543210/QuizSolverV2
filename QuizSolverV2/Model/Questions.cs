@@ -15,7 +15,8 @@ namespace QuizSolverV2.Model
         public string question { get; set; }
         public int corret_answer { get; set; }
         public int id_quiz { get; set; }
-        public ObservableCollection<Answer>? answers { get; set; } = new ObservableCollection<Answer>();
+        public ObservableCollection<Answer>  userAnswers { get; set; }
+        public List<Answer>? answers { get; set; } = new List<Answer>();
 
 
 

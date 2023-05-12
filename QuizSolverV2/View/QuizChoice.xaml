@@ -16,26 +16,21 @@
 
 
         <Grid Grid.Row="0" Margin="10" HorizontalAlignment="Center">
+            
+
             <TextBlock Text="Choice Quiz form below list"/>
         </Grid>
 
-        <ComboBox Grid.Row="1" Margin="10" Width="200">
-            <ComboBoxItem>ComboBox Item #1</ComboBoxItem>
-            <ComboBoxItem>ComboBox Item #2</ComboBoxItem>
-            <ComboBoxItem>ComboBox Item #3</ComboBoxItem>
+        <ComboBox Grid.Row="1" Margin="10" Width="200" ItemsSource="{Binding QuizList}" >
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text=""/>
+                    <TextBlock Text="{Binding name}"/>
                 </DataTemplate>                                            
             </ComboBox.ItemTemplate>
         </ComboBox>
 
         <Grid Grid.Row="2">
-
-            <Button Content="Wybierz i rozpocznij" Width="150"/>
-
-
-
+            <Button Content="Wybierz i rozpocznij" Width="150" Command="{Binding openQuizSolverCommand}"/>
         </Grid>
 
 
