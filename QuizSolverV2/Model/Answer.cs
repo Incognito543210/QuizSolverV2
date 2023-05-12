@@ -12,10 +12,5 @@ namespace QuizSolverV2.Model
         public int id_answer { get; set; }
          public int id_question { get; set; }
 
-     
-
-
-
-
     }
 }

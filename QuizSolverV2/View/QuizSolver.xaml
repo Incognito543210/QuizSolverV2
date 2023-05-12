@@ -18,17 +18,34 @@
         <ListView Grid.Column="0" ItemsSource="{Binding Questions}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Pytania: " Width="440" >
+                    <GridViewColumn Header="Nr." Width="40">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding question_number}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Pytania: " Width="400" >
                         <GridViewColumn.CellTemplate  >
                             <DataTemplate>
                                 <StackPanel Margin="10" Width="230">
                                     <TextBlock Text="{Binding question}"/>
-                                    <ComboBox Margin="10" Width="200" ItemsSource="{Binding answers}" DisplayMemberPath= "content" SelectedItem="{Binding UserAnswers[index], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="A: "/>
+                                    <TextBlock Text="{Binding answerA}"/>
                                 </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="B: "/>
+                                    <TextBlock Text="{Binding answerB}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    
                 </GridView>
+                
             </ListView.View>
         </ListView>
 
@@ -38,28 +55,23 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+               
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Czas:" Margin="10"/>
-                    <TextBlock Text="1:25" Margin="10"/>
+                    <TextBlock Text="{Binding TimeDisplay}" Margin="10"/>
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="1">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Punkty:" Margin="10"/>
-                    <TextBlock Text="15" Margin="10"/>
+                    <TextBlock Text="{Binding Points}" Margin="10"/>
                 </StackPanel>
             </Grid>
-
             <Grid Grid.Row="2">
-                <StackPanel Orientation="Horizontal" >
-                    <Button Content="Zakończ" Margin="10" Command="{Binding CheckAnswersCommand}"/>
-                </StackPanel>
-            </Grid>
-            <Grid Grid.Row="3">
                 <StackPanel Orientation="Vertical" >
                     <TextBlock Text="Wybierz Quiz z listy poniżej"/>
                     <ComboBox Margin="10" Width="200" ItemsSource="{Binding QuizList}" SelectedItem="{Binding SelectedQuiz, Mode=TwoWay}" IsEnabled="{Binding IsComboBoxEnabled}">
@@ -72,6 +84,34 @@
                     <Button Content="Wybierz i rozpocznij" Width="150" Command="{Binding ShowSelectedQuizCommand}"  IsEnabled="{Binding IsButtonEnabled}"/>
                 </StackPanel>
             </Grid>
+
+
+
+            <Grid Grid.Row="3">
+                <StackPanel Orientation="Vertical" >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Wybierz odpowiedz do pytania:"/>
+                        <TextBlock Text="{Binding WithQuestion}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <RadioButton Content="A" IsChecked="{Binding IsAnswerASelected}" Margin="10"/>
+                        <RadioButton Content="B" IsChecked="{Binding IsAnswerBSelected}" Margin="10"/>
+          
+                    </StackPanel>
+                    <Button Content="Sprawdz" Command="{Binding ShowSelectedAnswerCommand}"  IsEnabled="{Binding IsButtonEnabledAnswer}"/>
+
+                </StackPanel>
+            </Grid>
+
+
+
+
+
+
+
+
+
+
 
         </Grid>
         

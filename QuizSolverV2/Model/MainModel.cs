@@ -57,11 +57,13 @@ namespace QuizSolverV2.Model
                     adapter.SelectCommand.Parameters.AddWithValue("@param_id_quiz", id_quizParametr.ToString()) ;
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
+                    int numerOfQuestion = 1;
 
                     foreach (DataRow row in dataTable.Rows)
                     {
                         Questions question = new Questions();
 
+                        question.question_number = numerOfQuestion;
                         question.id_question = Convert.ToInt32(row["id_question"]);
                         question.question = row["content"].ToString();
                         question.corret_answer = Convert.ToInt32(row["id_correctAnswer"]);
@@ -70,7 +72,7 @@ namespace QuizSolverV2.Model
 
 
                         quizList[question.id_quiz].questions.Add(question);
-
+                        numerOfQuestion++;
                     }
 
                 }
@@ -87,7 +89,7 @@ namespace QuizSolverV2.Model
                         adapter.SelectCommand.Parameters.AddWithValue("@param_id_question", quizList[id_quizParametr].questions[i].id_question.ToString());
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
-
+                        int j = 0;
                         foreach (DataRow row in dataTable.Rows)
                         {
                             Answer anserws = new Answer();
@@ -96,8 +98,20 @@ namespace QuizSolverV2.Model
                             anserws.id_answer = Convert.ToInt32(row["id_answer"]);
                             anserws.id_question = Convert.ToInt32(row["id_question"]);
                             Console.WriteLine(anserws.content+ anserws.id_answer+ anserws.id_question);
+                            
 
-                           quizList[id_quizParametr].questions[i].answers.Add(anserws);
+                           
+                            if (j == 0)
+                            {
+                                quizList[id_quizParametr].questions[i].answerA= anserws.content;
+                                quizList[id_quizParametr].questions[i].id_answerA = anserws.id_answer;
+                            }
+                            if (j == 1)
+                            {
+                                quizList[id_quizParametr].questions[i].answerB= anserws.content; ;
+                                quizList[id_quizParametr].questions[i].id_answerB = anserws.id_answer;
+                            }
+                            j++;
                         }
 
                     }
@@ -111,7 +125,7 @@ namespace QuizSolverV2.Model
             return quizList;
         }
 
-
+      
 
 
 
