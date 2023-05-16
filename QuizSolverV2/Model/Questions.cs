@@ -25,9 +25,11 @@ namespace QuizSolverV2.Model
         public String answerB { get; set; }
         public int id_answerB { get; set; }
 
+        public String answerC { get; set; }
+        public int id_answerC { get; set; }
 
-
-
+        public String answerD { get; set; }
+        public int id_answerD { get; set; }
 
 
     }

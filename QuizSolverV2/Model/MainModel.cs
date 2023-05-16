@@ -111,6 +111,16 @@ namespace QuizSolverV2.Model
                                 quizList[id_quizParametr].questions[i].answerB= anserws.content; ;
                                 quizList[id_quizParametr].questions[i].id_answerB = anserws.id_answer;
                             }
+                            if (j == 2)
+                            {
+                                quizList[id_quizParametr].questions[i].answerC = anserws.content; ;
+                                quizList[id_quizParametr].questions[i].id_answerC = anserws.id_answer;
+                            }
+                            if (j == 3)
+                            {
+                                quizList[id_quizParametr].questions[i].answerD = anserws.content; ;
+                                quizList[id_quizParametr].questions[i].id_answerD = anserws.id_answer;
+                            }
                             j++;
                         }
 

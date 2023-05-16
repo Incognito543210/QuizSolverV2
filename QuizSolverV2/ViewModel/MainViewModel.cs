@@ -20,7 +20,7 @@ namespace QuizSolverV2.ViewModel
 
         
 
-        //wczytanie danych
+        //Load data
         #region
         public ObservableCollection<Quiz> QuizList { get; set; }
         public ObservableCollection<Quiz> QuizListforQuestion { get; set; }
@@ -40,7 +40,7 @@ namespace QuizSolverV2.ViewModel
         }
 
         #endregion
-        //wybor quizu i wczytanie odpowiedzi i zablokowanie mozliwosci aby wybrac więcej niz jeden quiz
+        //Choice quiz and load answer, bloc that user can choice more than one quiz
         #region
         private Quiz _selectedQuiz = new Quiz();
 
@@ -92,7 +92,7 @@ namespace QuizSolverV2.ViewModel
 
 
         #endregion
-        //nie mozna wybierac wiecej niz 1 quiz
+        //User can choice only one quiz
         #region
         private bool isComboBoxEnabled;
         public bool IsComboBoxEnabled
@@ -121,7 +121,7 @@ namespace QuizSolverV2.ViewModel
         }
         #endregion
 
-        //czas 
+        //Time 
         #region
          
         private readonly DispatcherTimer _timer;
@@ -149,7 +149,7 @@ namespace QuizSolverV2.ViewModel
 
         #endregion
 
-        //Odpowiedzi do quizu i punkty
+        //Answer for quiz and points
         #region
         private bool _isAnswerASelected;
 
@@ -174,6 +174,40 @@ namespace QuizSolverV2.ViewModel
                 onPropertyChanged(nameof(IsAnswerBSelected));
             }
         }
+
+
+
+
+        private bool _isAnswerCSelected;
+
+        public bool IsAnswerCSelected
+        {
+
+            get { return _isAnswerCSelected; }
+            set
+            {
+                _isAnswerCSelected = value;
+                onPropertyChanged(nameof(IsAnswerCSelected));
+            }
+        }
+
+
+
+        private bool _isAnswerDSelected;
+
+        public bool IsAnswerDSelected
+        {
+
+            get { return _isAnswerDSelected; }
+            set
+            {
+                _isAnswerDSelected = value;
+                onPropertyChanged(nameof(IsAnswerDSelected));
+            }
+        }
+
+
+
 
 
         public ICommand ShowSelectedAnswerCommand => new RelayCommand(ShowSelectedAnswer);
@@ -204,7 +238,7 @@ namespace QuizSolverV2.ViewModel
             }
         }
         #endregion
-        //guzik odpowiedzialny za odpowiadanie na pytania
+        //Button for chceck answer
         #region
         private bool _isButtonEnabledAnswer;
         public bool IsButtonEnabledAnswer
@@ -257,9 +291,46 @@ namespace QuizSolverV2.ViewModel
                 }
                 
             }
+
+            else if (IsAnswerCSelected)
+            {
+
+
+                MessageBox.Show("Wybrano odpowiedz C");
+
+                if (QuizList[SelectedQuiz.id_quiz].questions[WithQuestion - 1].corret_answer.Equals(QuizList[SelectedQuiz.id_quiz].questions[WithQuestion - 1].id_answerC))
+                {
+                    MessageBox.Show("Poprawna odpowiedz");
+                    Points++;
+                }
+                else
+                {
+                    MessageBox.Show("Niestety nie poprawna odpowiedz");
+                }
+
+            }
+
+            else if (IsAnswerDSelected)
+            {
+
+
+                MessageBox.Show("Wybrano odpowiedz D");
+
+                if (QuizList[SelectedQuiz.id_quiz].questions[WithQuestion - 1].corret_answer.Equals(QuizList[SelectedQuiz.id_quiz].questions[WithQuestion - 1].id_answerD))
+                {
+                    MessageBox.Show("Poprawna odpowiedz");
+                    Points++;
+                }
+                else
+                {
+                    MessageBox.Show("Niestety nie poprawna odpowiedz");
+                }
+
+            }
+
             else
             {
-                MessageBox.Show("Wybierz odpowied");
+                MessageBox.Show("Wybierz odpowiedz");
                 WithQuestion--;
             }
 

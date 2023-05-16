@@ -32,11 +32,19 @@
                                     <TextBlock Text="{Binding question}"/>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="A: "/>
-                                    <TextBlock Text="{Binding answerA}"/>
-                                </StackPanel>
+                                        <TextBlock Text="{Binding answerA}"/>
+                                    </StackPanel>
                                     <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="B: "/>
-                                    <TextBlock Text="{Binding answerB}"/>
+                                        <TextBlock Text="B: "/>
+                                        <TextBlock Text="{Binding answerB}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="C: "/>
+                                        <TextBlock Text="{Binding answerC}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="D: "/>
+                                        <TextBlock Text="{Binding answerD}"/>
                                     </StackPanel>
                                 </StackPanel>
                                 
@@ -90,12 +98,14 @@
             <Grid Grid.Row="3">
                 <StackPanel Orientation="Vertical" >
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Wybierz odpowiedz do pytania:"/>
+                        <TextBlock Text="Wybierz odpowiedz do pytania: "/>
                         <TextBlock Text="{Binding WithQuestion}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <RadioButton Content="A" IsChecked="{Binding IsAnswerASelected}" Margin="10"/>
                         <RadioButton Content="B" IsChecked="{Binding IsAnswerBSelected}" Margin="10"/>
+                        <RadioButton Content="C" IsChecked="{Binding IsAnswerCSelected}" Margin="10"/>
+                        <RadioButton Content="D" IsChecked="{Binding IsAnswerDSelected}" Margin="10"/>
           
                     </StackPanel>
                     <Button Content="Sprawdz" Command="{Binding ShowSelectedAnswerCommand}"  IsEnabled="{Binding IsButtonEnabledAnswer}"/>
@@ -104,28 +114,9 @@
             </Grid>
 
 
-
-
-
-
-
-
-
-
-
         </Grid>
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+       
         
     </Grid>
 </UserControl>
