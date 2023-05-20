@@ -40,6 +40,7 @@ namespace QuizSolverV2.ViewModel
         }
 
         #endregion
+
         //Choice quiz and load answer, bloc that user can choice more than one quiz
         #region
         private Quiz _selectedQuiz = new Quiz();
@@ -92,6 +93,7 @@ namespace QuizSolverV2.ViewModel
 
 
         #endregion
+
         //User can choice only one quiz
         #region
         private bool isComboBoxEnabled;
@@ -238,6 +240,7 @@ namespace QuizSolverV2.ViewModel
             }
         }
         #endregion
+
         //Button for chceck answer
         #region
         private bool _isButtonEnabledAnswer;

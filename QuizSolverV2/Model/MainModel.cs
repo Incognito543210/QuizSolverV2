@@ -12,8 +12,10 @@ namespace QuizSolverV2.Model
 {
     internal class MainModel
     {
-        string connectionString = "Data Source=\"C:\\Users\\Pumpel\\Desktop\\QuizDataBase.db\"";
+        string connectionString = "Data Source=QuizDataBase.db";
         public List<Quiz> quizList = new List<Quiz>();
+       
+        private EncryptionHelper _encryptionHelper = new EncryptionHelper(); 
         
         public List<Quiz> loadQuizList()
         {  
@@ -66,7 +68,7 @@ namespace QuizSolverV2.Model
                         question.question_number = numerOfQuestion;
                         question.id_question = Convert.ToInt32(row["id_question"]);
                         question.question = row["content"].ToString();
-                        question.corret_answer = Convert.ToInt32(row["id_correctAnswer"]);
+                        question.corret_answer = _encryptionHelper.DecryptInt(Convert.ToInt32(row["id_correctAnswer"]));
                         question.id_quiz = Convert.ToInt32(row["id_quiz"]);
                         Console.WriteLine(question.id_question + question.question + question.corret_answer + question.id_quiz);
 
