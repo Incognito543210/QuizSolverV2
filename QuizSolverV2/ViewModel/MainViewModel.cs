@@ -115,17 +115,19 @@ namespace QuizSolverV2.ViewModel
 
             QuizList = new ObservableCollection<Quiz>(mainModel.loadQuestionAndAnswer(_selectedQuiz.id_quiz));
             MessageBox.Show($"Wybrano odpowiedź: {SelectedQuiz.name}");
-            Questions = new ObservableCollection<Questions>(QuizList[_selectedQuiz.id_quiz].questions);
+            Questions = new ObservableCollection<Questions>(QuizList[mainModel.positionQuizInQuizList(_selectedQuiz.id_quiz)].questions);
             IsComboBoxEnabled = false;
             IsButtonEnabled = false;
             IsButtonEnabledAnswer = true;
             _timer.Start();
         }
+       
+
         #endregion
 
         //Time 
         #region
-         
+
         private readonly DispatcherTimer _timer;
         private TimeSpan _elapsedTime;
 
@@ -266,7 +268,7 @@ namespace QuizSolverV2.ViewModel
 
                 MessageBox.Show("Wybrano odpowiedz A");
 
-                if (QuizList[SelectedQuiz.id_quiz].questions[WithQuestion - 1].corret_answer.Equals(QuizList[SelectedQuiz.id_quiz].questions[WithQuestion - 1].id_answerA))
+                if (QuizList[mainModel.positionQuizInQuizList(_selectedQuiz.id_quiz)].questions[WithQuestion - 1].corret_answer.Equals(QuizList[mainModel.positionQuizInQuizList(_selectedQuiz.id_quiz)].questions[WithQuestion - 1].id_answerA))
                 {
                     MessageBox.Show("Poprawna odpowiedz");
                     Points++;
@@ -283,7 +285,7 @@ namespace QuizSolverV2.ViewModel
 
                 MessageBox.Show("Wybrano odpowiedz B");
 
-                if (QuizList[SelectedQuiz.id_quiz].questions[WithQuestion - 1].corret_answer.Equals(QuizList[SelectedQuiz.id_quiz].questions[WithQuestion - 1].id_answerB))
+                if (QuizList[mainModel.positionQuizInQuizList(_selectedQuiz.id_quiz)].questions[WithQuestion - 1].corret_answer.Equals(QuizList[mainModel.positionQuizInQuizList(_selectedQuiz.id_quiz)].questions[WithQuestion - 1].id_answerB))
                 {
                     MessageBox.Show("Poprawna odpowiedz");
                     Points++;
@@ -301,7 +303,7 @@ namespace QuizSolverV2.ViewModel
 
                 MessageBox.Show("Wybrano odpowiedz C");
 
-                if (QuizList[SelectedQuiz.id_quiz].questions[WithQuestion - 1].corret_answer.Equals(QuizList[SelectedQuiz.id_quiz].questions[WithQuestion - 1].id_answerC))
+                if (QuizList[mainModel.positionQuizInQuizList(_selectedQuiz.id_quiz)].questions[WithQuestion - 1].corret_answer.Equals(QuizList[mainModel.positionQuizInQuizList(_selectedQuiz.id_quiz)].questions[WithQuestion - 1].id_answerC))
                 {
                     MessageBox.Show("Poprawna odpowiedz");
                     Points++;
@@ -319,7 +321,7 @@ namespace QuizSolverV2.ViewModel
 
                 MessageBox.Show("Wybrano odpowiedz D");
 
-                if (QuizList[SelectedQuiz.id_quiz].questions[WithQuestion - 1].corret_answer.Equals(QuizList[SelectedQuiz.id_quiz].questions[WithQuestion - 1].id_answerD))
+                if (QuizList[mainModel.positionQuizInQuizList(_selectedQuiz.id_quiz)].questions[WithQuestion - 1].corret_answer.Equals(QuizList[mainModel.positionQuizInQuizList(_selectedQuiz.id_quiz)].questions[WithQuestion - 1].id_answerD))
                 {
                     MessageBox.Show("Poprawna odpowiedz");
                     Points++;
@@ -337,7 +339,7 @@ namespace QuizSolverV2.ViewModel
                 WithQuestion--;
             }
 
-                if (WithQuestion == QuizList[SelectedQuiz.id_quiz].questions.Count)
+                if (WithQuestion == QuizList[mainModel.positionQuizInQuizList(_selectedQuiz.id_quiz)].questions.Count)
                 {
                     MessageBox.Show("Koniec quizu. Zdobyte punkty: " + Points);
                     IsButtonEnabledAnswer = false;

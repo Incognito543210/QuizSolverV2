@@ -45,6 +45,13 @@ namespace QuizSolverV2.Model
             return quizList;
         }
 
+        public int positionQuizInQuizList(int id_quizParametr = 1)
+        {
+            
+            int positionOfChoiceQuizInQuizList = quizList.FindIndex(quiz => quiz.id_quiz == id_quizParametr);
+            return positionOfChoiceQuizInQuizList;
+        }
+
         public List<Quiz> loadQuestionAndAnswer(int id_quizParametr = 1)
         {
               
@@ -52,7 +59,7 @@ namespace QuizSolverV2.Model
             {
                 connection.Open();
                 string queryQuestion = "SELECT * FROM questionTable where id_quiz =@param_id_quiz";
-                
+                int positionOfChoiceQuizInQuizList = quizList.FindIndex(quiz => quiz.id_quiz == id_quizParametr);
 
                 using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(queryQuestion, connection))
                 {
@@ -73,7 +80,10 @@ namespace QuizSolverV2.Model
                         Console.WriteLine(question.id_question + question.question + question.corret_answer + question.id_quiz);
 
 
-                        quizList[question.id_quiz].questions.Add(question);
+                        
+
+
+                        quizList[positionOfChoiceQuizInQuizList].questions.Add(question);
                         numerOfQuestion++;
                     }
 
@@ -81,14 +91,14 @@ namespace QuizSolverV2.Model
 
                 string queryAnswer = "SELECT * FROM answerTable where id_question =@param_id_question";
 
-                for (int i = 0; i< quizList[id_quizParametr].questions.Count; i++)
+                for (int i = 0; i< quizList[positionOfChoiceQuizInQuizList].questions.Count; i++)
                 {
 
 
 
                     using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(queryAnswer, connection))
                     {
-                        adapter.SelectCommand.Parameters.AddWithValue("@param_id_question", quizList[id_quizParametr].questions[i].id_question.ToString());
+                        adapter.SelectCommand.Parameters.AddWithValue("@param_id_question", quizList[positionOfChoiceQuizInQuizList].questions[i].id_question.ToString());
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
                         int j = 0;
@@ -99,29 +109,28 @@ namespace QuizSolverV2.Model
                             anserws.content = row["contentAnswer"].ToString();
                             anserws.id_answer = Convert.ToInt32(row["id_answer"]);
                             anserws.id_question = Convert.ToInt32(row["id_question"]);
-                            Console.WriteLine(anserws.content+ anserws.id_answer+ anserws.id_question);
-                            
+                           
 
                            
                             if (j == 0)
                             {
-                                quizList[id_quizParametr].questions[i].answerA= anserws.content;
-                                quizList[id_quizParametr].questions[i].id_answerA = anserws.id_answer;
+                                quizList[positionOfChoiceQuizInQuizList].questions[i].answerA= anserws.content;
+                                quizList[positionOfChoiceQuizInQuizList].questions[i].id_answerA = anserws.id_answer;
                             }
                             if (j == 1)
                             {
-                                quizList[id_quizParametr].questions[i].answerB= anserws.content; ;
-                                quizList[id_quizParametr].questions[i].id_answerB = anserws.id_answer;
+                                quizList[positionOfChoiceQuizInQuizList].questions[i].answerB= anserws.content; ;
+                                quizList[positionOfChoiceQuizInQuizList].questions[i].id_answerB = anserws.id_answer;
                             }
                             if (j == 2)
                             {
-                                quizList[id_quizParametr].questions[i].answerC = anserws.content; ;
-                                quizList[id_quizParametr].questions[i].id_answerC = anserws.id_answer;
+                                quizList[positionOfChoiceQuizInQuizList].questions[i].answerC = anserws.content; ;
+                                quizList[positionOfChoiceQuizInQuizList].questions[i].id_answerC = anserws.id_answer;
                             }
                             if (j == 3)
                             {
-                                quizList[id_quizParametr].questions[i].answerD = anserws.content; ;
-                                quizList[id_quizParametr].questions[i].id_answerD = anserws.id_answer;
+                                quizList[positionOfChoiceQuizInQuizList].questions[i].answerD = anserws.content; ;
+                                quizList[positionOfChoiceQuizInQuizList].questions[i].id_answerD = anserws.id_answer;
                             }
                             j++;
                         }
